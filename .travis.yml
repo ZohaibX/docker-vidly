@@ -12,8 +12,10 @@ services:
 #! Tests
 before_install:
   - docker build -t zohaibbutt/vidly-react-tests -f ./client/Dockerfile.dev ./client
+  - docker build -t zohaibbutt/vidly-express-tests -f ./server/Dockerfile.dev ./server
 script:
   - docker run -e CI=true zohaibbutt/vidly-react-tests yarn test
+  - docker run -e CI=true zohaibbutt/vidly-express-tests yarn test
 
 #! Push All The Code in to Docker Hub
 after_success:
