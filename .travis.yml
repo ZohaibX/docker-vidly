@@ -34,3 +34,20 @@ after_success:
   - docker push 03004968719/vidly-client
   - docker push 03004968719/vidly-nginx
   - docker push 03004968719/vidly-server
+
+#!!!!! must push the code to github before writing deploy script so every image will be pushed to docker hub.
+
+# i have to create these services for this app to work-- i can see in AWS cheat sheet
+#! Deploy
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: docker-vidly
+  env: DockerVidly-env
+  bucket_name: elasticbeanstalk-us-east-1-739511424947
+  bucket_path: docker-vidly # choose any name
+  on:
+    branch: main # master or main
+  access_key_id: $AWS_ACCESS_ID
+  secret_access_id: $SECRET_ACCESS_ID

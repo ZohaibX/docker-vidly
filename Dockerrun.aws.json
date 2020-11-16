@@ -2,21 +2,21 @@
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [{
             "name": "client",
-            "image": "03004968719/multi-client",
+            "image": "03004968719/vidly-client",
             "hostname": "client",
             "essential": false,
             "memory": 128
         },
         {
             "name": "server",
-            "image": "03004968719/multi-server",
+            "image": "03004968719/vidly-server",
             "hostname": "api",
             "essential": false,
             "memory": 128
         },
         {
             "name": "nginx",
-            "image": "03004968719/multi-nginx",
+            "image": "03004968719/vidly-nginx",
             "hostname": "nginx",
             "essential": true,
             "portMappings": [{
