@@ -1,0 +1,5 @@
+this passport thing is working great but on the backend route, 
+if we go to /google , it will work fine 
+
+in frontend , we redirect localhost:3000/google(client) to localhost:4000/google(backend) , it will go to localhost:4000/google/callback ,
+we want it to be redirected to localhost:3000/(client side back)

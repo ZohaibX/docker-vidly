@@ -1,0 +1,69 @@
+.btn {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block; // will have its padding and height -- and we can easily set padding margin
+    padding: 1.5rem 4rem;
+    border-radius: 10rem;
+    animation: moveInBottom 0.5s ease-out 0.75s; // 0.75s is delay
+    animation-fill-mode: backwards;
+    //!  this animation property ensures that the button will not be visible before animation is applied
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+    &:focus {
+        // sometimes -- blue border appears when we click the button tag
+        outline: none;
+    }
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    }
+    &:active {
+        transform: translateY( -0.1rem); // here we are translating actual button to -.1rem // not the button we hovered, which is already in -.3rem
+        box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
+        outline: none !important;
+    }
+}
+
+// After Element
+.btn::after {
+    // we need to make it as our actual button
+    content: "";
+    display: inline-block;
+    // height and width of its parent element -- actual element
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    // positioning according to parent element
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; // so it is behind actual button
+    transition: all 0.4s;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; // opacity will become 0 according to transition
+}
+
+// Global Settings
+.btn-white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+    position: relative;
+}
+
+.btn-white::after {
+    background-color: $color-white;
+}
+
+.btn-green {
+    background-color: $color-green;
+    color: $color-white;
+    position: relative;
+}
+
+.btn-green::after {
+    background-color: $color-green;
+}

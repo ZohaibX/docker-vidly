@@ -1,0 +1,45 @@
+// GOOGLE SECURITY KEYS can be created by following https://dev.to/imichaelowolabi/how-to-implement-login-with-google-in-nest-js-2aoa
+// or by going to https://console.developers.google.com/
+// we can retrieve user's information along with his dp and username
+
+// but i don't know how can i use it for authorization, bcoz our user should have task or student property in it
+// so whenever user create a task, that task data will go to user.tasks
+// but atleast we can get user's data filhaal - for small apps where i don't assign tasks to user
+
+import React from "react";
+import GoogleLogin from "react-google-login";
+import { GoogleLogout } from "react-google-login";
+
+function App() {
+  const responseGoogle = (response) => {
+    console.log(response); // response is a total response from google and response.tokenId is jwt token
+    // which we will set as a header and we can use gql routes from nest js
+    // we will even get a image of ours from google
+  };
+
+  const logout = () => {
+    // token id remove process from local storage
+    console.log("logout");
+  };
+
+  return (
+    <div className="App">
+      <GoogleLogin
+        clientId="valid_key"
+        onSuccess={responseGoogle}
+        isSignedIn={true}
+        theme="dark"
+        className="button"
+        style={{ color: "red" }}
+      />
+
+      <GoogleLogout
+        clientId="valid_key"
+        buttonText="Logout"
+        onLogoutSuccess={logout}
+      ></GoogleLogout>
+    </div>
+  );
+}
+
+export default App;

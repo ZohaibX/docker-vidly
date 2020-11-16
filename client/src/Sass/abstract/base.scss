@@ -1,0 +1,60 @@
+@import "./mixins";
+@import "./variables";
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: 62.5%;
+    // 1rem = 10px , 10/16 = 0.625 = 62.5
+    /* 10/16 * 100 means this -- so user cannot change to any pixel by himself */
+    /* initially -- it was 10px */
+    /* font-size is very important property here .. this is a base of rem -- means 1 rem = 10px */
+    /* if we change pixels here in font-size .. then every value with rem will change */
+    /* this font-size property is base of rem */
+    line-height: 1.7;
+    /* 1.7* bigger */
+    color: $color-grey-dark;
+    // ------------------------------------------
+    // as tab-port is <=900 ..
+    // and phone is <= 600
+    // and we want font-size to be same ..
+    // so we will not specify for phone
+    // 50% font will work on 0 - 900
+    //! order is important
+    // if something has a width of 500
+    // it is less than 600 and 900 // so media queries will conflict
+    // so order is important
+    // always the larger ones before the smaller ones
+    // because if we have 700 width
+    // it is less than 900 and 1200 too ...
+    // so we'll handle it this way ... larger to smaller ..
+    // width < 1200
+    @include respond(tab-land) {
+        // 1rem will become equal to 9px from 10px , 9/16 = 0.5625 = 50%
+        font-size: 56.25%;
+    }
+    // width < 900
+    @include respond(tab-port) {
+        // 1rem will become equal to 8px from 10px  , 8/16 = 0.50 = 50%
+        font-size: 50%;
+        padding: 0.4rem;
+    }
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem will become equal to 12px from 10px , 12/16 = 0.75 = 75%
+    }
+}
+
+body {
+    padding: 0.5rem;
+    //! it applied padding in every element -- in images too -- so it should be on body tag -- but its fine in this case
+    /* to have 30px padding on all sides of the whole body -- optional */
+    margin: 2.5rem;
+    //! same with margins as padding
+}
+
+// when we select some text -- we decide, which color to choose
+::selection {
+    background-color: $color-green;
+    color: $color-white;
+}

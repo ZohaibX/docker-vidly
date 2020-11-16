@@ -1,0 +1,42 @@
+#! we may be needed to add environments for every service possible , and depends_on
+version: "3"
+services:
+  redis:
+    image: "redis:latest"
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always # we always want traffic running
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "5000:80" # 3050 on the local machine and 80 on the container
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    # For time to time changes - -we use volumes -- must add a special env variable in every service
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    # Default environment variables for redis and pg images
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT= 6739
+      - DATABASE="mongodb://localhost/newVidly_tests"
+      - CHOKIDAR_USEPOLLING=true #! this environment is must for volumes
+  client:
+    # without tty -- react app  will break on npm install command
+    tty: true
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    # For time to time changes - -we use volumes -- must add a special env variable in every service
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true #! this environment is must for volumes
