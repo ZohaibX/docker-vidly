@@ -8,7 +8,7 @@ const winston = Winston.createLogger({
   transports: [
     new Winston.transports.MongoDB(
       {
-        db: keys.mongoUri,
+        db: process.env.DATABASE,
       },
       {
         useNewUrlParser: true,

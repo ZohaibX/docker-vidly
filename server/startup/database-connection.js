@@ -5,7 +5,7 @@ const keys = require("../config/keys");
 
 module.exports = async function () {
   try {
-    await mongoose.connect(keys.mongoUri, {
+    await mongoose.connect(process.env.DATABASE, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
