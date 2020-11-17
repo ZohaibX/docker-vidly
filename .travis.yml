@@ -43,8 +43,8 @@ deploy:
   edge: true
   provider: elasticbeanstalk
   region: us-east-1
-  app: docker-vidly
-  env: DockerVidly-env
+  app: Docker-O
+  env: DockerO-env
   bucket_name: elasticbeanstalk-us-east-1-739511424947
   bucket_path: docker-vidly # choose any name
   on:
