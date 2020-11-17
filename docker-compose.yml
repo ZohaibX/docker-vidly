@@ -25,7 +25,7 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT= 6739
-      - DATABASE="mongodb://localhost/newVidly_tests"
+      - DATABASE=mongodb+srv://zohaib:1234@cluster0-vvrwq.mongodb.net/events?retryWrites=true&w=majority
       - CHOKIDAR_USEPOLLING=true #! this environment is must for volumes
   client:
     # without tty -- react app  will break on npm install command
