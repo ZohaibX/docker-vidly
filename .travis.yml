@@ -27,7 +27,7 @@ before_install:
   # (3) travis login --github-token [token] --pro #? in the same shell, and token will be generated from https://github.com/settings/tokens with good access
   # copy the downloaded json file into the project folder and rename it
   # then we will encrypt that file using command --
-  # (4) travis encrypt-file --pro super_secret.json -r ZohaibX/vidly-k8s #? service-account.json is the file name to encrypt and at the end, we need to give repository name
+  # (4) travis encrypt-file --pro super_secret.json -r ZohaibX/docker-vidly --pro #? service-account.json is the file name to encrypt and at the end, we need to give repository name
   #!(5) after that, we will get a command, which we have to paste on the start of before_install method
   # now if i do ls in powershell. i will get one more enc file created
   # must delete the original account file after the enc file created
@@ -41,13 +41,12 @@ before_install:
 # script:
 # - docker run -e CI=true 03004968719/react-tests npm run test # CI=true must - to exit the test when done
 
-#! Deployment to Kubernetes
-# deploy:
-#   provider: script
-#   script: bash ./deploy.sh # this command means that we will write our deploy command by our own in our own file
-#   on:
-#     branch: main
-
+# ! Deployment to Kubernetes
+deploy:
+  provider: script
+  script: bash ./deploy.sh # this command means that we will write our deploy command by our own in our own file
+  on:
+    branch: main
 #! Important -- all in google cloud console
 # write these lines from before_install section to google cloud built-in terminal
 
