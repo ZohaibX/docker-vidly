@@ -31,14 +31,15 @@ before_install:
   #!(5) after that, we will get a command, which we have to paste on the start of before_install method
   # now if i do ls in powershell. i will get one more enc file created
   # must delete the original account file after the enc file created
-  # - gcloud config set project multi-k8s-297711 # get the id of project
-  # - gcloud config set compute/zone us-central1-c # we will get the zone like us-east when we create kubernetes cluster in our project
-  # - gcloud container clusters get-credentials cluster-1 # get the cluster name when we create one
-  # - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-  # - docker build -t 03004968719/react-tests -f ./client/Dockerfile.dev ./client #? bcoz we wanna run tests for this image
-  # 03004968719/react-tests is just naming of the build
+  - gcloud config set project vidly-k8s # get the id of project
+  - gcloud config set compute/zone us-central1-c # we will get the zone like us-east when we create kubernetes cluster in our project
+  - gcloud container clusters get-credentials vidly-k8s # get the cluster name when we create one
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+# - docker build -t 03004968719/react-tests -f ./client/Dockerfile.dev ./client #? bcoz we wanna run tests for this image
+# not wanna buid this for test -- thats y above line is commented . 03004968719/react-tests is just naming of the build
+
 # script:
-#   - docker run -e CI=true 03004968719/react-tests npm run test # CI=true must - to exit the test when done
+# - docker run -e CI=true 03004968719/react-tests npm run test # CI=true must - to exit the test when done
 
 #! Deployment to Kubernetes
 # deploy:
