@@ -8,7 +8,6 @@ env:
 before_install:
   - openssl aes-256-cbc -K $encrypted_d2bedf8223e1_key -iv $encrypted_d2bedf8223e1_iv -in super_secret.json.enc -out super_secret.json -d
   # this command coming from #!(5)
-  - gem install bundler --pre
   - curl https://sdk.cloud.google.com | bash > /dev/null; # command to download google sdk
   - source $HOME/google-cloud-sdk/path.bash.inc # configuration for google sdk
   - gcloud components update kubectl # install and update kubectl inside travis environment
@@ -39,8 +38,8 @@ before_install:
   - docker build -t 03004968719/react-tests -f ./client/Dockerfile.dev ./client #? bcoz we wanna run tests for this image
 #  03004968719/react-tests is just naming of the build -- for tests in script section here
 
-# script:
-# - docker run -e CI=true 03004968719/react-tests npm run test # CI=true must - to exit the test when done
+script:
+  - docker run -e CI=true 03004968719/react-tests npm run test # CI=true must - to exit the test when done
 
 # ! Deployment to Kubernetes
 deploy:
