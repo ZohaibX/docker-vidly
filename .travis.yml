@@ -35,8 +35,8 @@ before_install:
   - gcloud config set compute/zone us-central1-c # we will get the zone like us-east when we create kubernetes cluster in our project
   - gcloud container clusters get-credentials vidly-k8s # get the cluster name when we create one
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-# - docker build -t 03004968719/react-tests -f ./client/Dockerfile.dev ./client #? bcoz we wanna run tests for this image
-# not wanna buid this for test -- thats y above line is commented . 03004968719/react-tests is just naming of the build
+  - docker build -t 03004968719/react-tests -f ./client/Dockerfile.dev ./client #? bcoz we wanna run tests for this image
+#  03004968719/react-tests is just naming of the build -- for tests in script section here
 
 # script:
 # - docker run -e CI=true 03004968719/react-tests npm run test # CI=true must - to exit the test when done
