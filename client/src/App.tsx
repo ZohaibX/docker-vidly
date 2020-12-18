@@ -15,7 +15,7 @@ import AlreadySignedInProtectedRoute from "./Services/Already-Signed-In-Route/pr
 // Axios For REST
 import axios from "./Services/HTTP-Services/axios.js"; // this file compiles successfully
 
-function App() {
+function App(): any {
   React.useEffect(() => {
     const userData = gettingUserData();
     console.log(userData);

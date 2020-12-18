@@ -1,14 +1,14 @@
-import * as React from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { GetAllTasks } from "./../GraphQL/Queries/getAllTasks";
-import { CreateTask } from "./../GraphQL/Mutations/createTask";
-import { DeleteTask } from "../GraphQL/Mutations/deleteTask";
-import { ChangeTitle } from "./../GraphQL/Mutations/updateTaskTitle";
+import * as React from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import { GetAllTasks } from './../GraphQL/Queries/getAllTasks';
+import { CreateTask } from './../GraphQL/Mutations/createTask';
+import { DeleteTask } from '../GraphQL/Mutations/deleteTask';
+import { ChangeTitle } from './../GraphQL/Mutations/updateTaskTitle';
 
 export interface TasksProps {}
 
 const Tasks: React.SFC<TasksProps> = (props: TasksProps) => {
-  const [title, setTitle] = React.useState("");
+  const [title, setTitle] = React.useState('');
 
   const { data, loading, error }: any = useQuery(GetAllTasks); // Query Declaration
 
@@ -49,7 +49,7 @@ const Tasks: React.SFC<TasksProps> = (props: TasksProps) => {
         variables: { id, title },
         refetchQueries: [{ query: GetAllTasks }],
       });
-      setTitle("");
+      setTitle('');
     } catch (error) {
       return error;
     }
@@ -58,6 +58,8 @@ const Tasks: React.SFC<TasksProps> = (props: TasksProps) => {
   const showAllTasks = () => {
     if (loading) return <p>Loading ... </p>;
     if (error) return <p>Error ... </p>;
+    console.log(data.getAllTasks);
+
     // Query Usage/Execution -- only this is how this executes
     return (
       <ul>
@@ -68,7 +70,7 @@ const Tasks: React.SFC<TasksProps> = (props: TasksProps) => {
             <span>
               <button
                 onClick={() => changeTaskName(item._id)}
-                className="btn btn-warning"
+                className='btn btn-warning'
               >
                 Update
               </button>
@@ -89,29 +91,29 @@ const Tasks: React.SFC<TasksProps> = (props: TasksProps) => {
         refetchQueries: [{ query: GetAllTasks }],
       });
 
-      setTitle("");
+      setTitle('');
     } catch (e) {}
   };
 
   return (
-    <div className="">
+    <div className=''>
       {showAllTasks()}
-      <h1 className="text-center my-2 font-weight-bolder">Create Task</h1>
-      <div className="row">
-        <div className="col-3"></div>
-        <div className="col-6">
-          <form className=" mt-5 ml-5" onSubmit={submitTask}>
-            <div className="form-group">
-              <label htmlFor="email">Task Title</label>
+      <h1 className='text-center my-2 font-weight-bolder'>Create Task</h1>
+      <div className='row'>
+        <div className='col-3'></div>
+        <div className='col-6'>
+          <form className=' mt-5 ml-5' onSubmit={submitTask}>
+            <div className='form-group'>
+              <label htmlFor='email'>Task Title</label>
               <input
-                type="text"
-                className="form-control"
-                id="email"
-                placeholder="Enter Task Title"
+                type='text'
+                className='form-control'
+                id='email'
+                placeholder='Enter Task Title'
                 value={title}
                 onChange={(e) => setTitle(e.currentTarget.value)}
               />
-              <button type="submit" className="btn btn-primary my-3">
+              <button type='submit' className='btn btn-primary my-3'>
                 Submit
               </button>
             </div>

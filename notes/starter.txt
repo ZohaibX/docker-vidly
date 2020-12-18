@@ -1,0 +1,9 @@
+Every file's image should be pushed on dockerhub
+
+client 
+worker
+redis 
+postgres 
+persistent volume config file 
+add persistent volume configuration in postgres deployment file 
+ingress-service file (for local or google env)

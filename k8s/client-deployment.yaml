@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 3 # pods
+  selector:
+    matchLabels: # to match labels
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web # should be same as above
+    spec:
+      containers:
+        - name: client
+          image: 03004968719/vidly-client
+          ports:
+            - containerPort: 3000
