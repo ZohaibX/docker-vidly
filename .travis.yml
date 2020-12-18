@@ -50,12 +50,13 @@ deploy:
 #! Important -- all in google cloud console
 # write these lines from before_install section to google cloud built-in terminal
 
-# gcloud config set project multi-k8s-297711
-# gcloud config set compute/zone us-central1-c
-# gcloud container clusters get-credentials cluster-1
+# gcloud config set project [id]
+# gcloud config set compute/zone [zone]
+# gcloud container clusters get-credentials [name]
 
 # then we will create a secret password for postgres database
 # kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345678
+# kubectl create secret generic mongostring --from-literal MONGOSTRING=mongodb+srv://zohaib:1234@cluster0-vvrwq.mongodb.net/events?retryWrites=true&w=majority
 
 # download Helm in cloud console terminal. write 3 next commands in the terminal
 # curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh

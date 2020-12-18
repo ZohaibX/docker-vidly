@@ -12,7 +12,6 @@ kubectl apply -f k8s
 
 kubectl set image deployments/server-deployment server=03004968719/vidly-server:$SHA 
 kubectl set image deployments/client-deployment client=03004968719/vidly-client:$SHA 
-
 # server-deployment is the name of server-deployment file , server=03004968719/multi-server means that in container server -- we need to run our own image with tag $SHA
 # building docker images above ...
 # applying kubernetes files in kubectl command
