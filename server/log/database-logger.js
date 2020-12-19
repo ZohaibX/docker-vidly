@@ -8,7 +8,8 @@ const winston = Winston.createLogger({
   transports: [
     new Winston.transports.MongoDB(
       {
-        db: process.env.MONGOSTRING,
+        db:
+          'mongodb+srv://zohaib:1234@cluster0-vvrwq.mongodb.net/events?retryWrites=true&w=majority',
       },
       {
         useNewUrlParser: true,
