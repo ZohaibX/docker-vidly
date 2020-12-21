@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: 03004968719/vidly-server
+          image: 03004968719/vidly-server:new
           ports:
             - containerPort: 4000
           #? All necessary environment variables for later use

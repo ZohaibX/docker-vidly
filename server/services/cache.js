@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-const redis = require("redis");
-const util = require("util");
-const keys = require("../config/keys");
+const mongoose = require('mongoose');
+const redis = require('redis');
+const util = require('util');
 
 // const redisUrl = "redis://127.0.0.1:6379";
 // const client = redis.createClient(redisUrl);
@@ -21,7 +20,7 @@ mongoose.Query.prototype.cache = function (options = {}) {
   // we need to do Task.find().cache()
 
   this.useCache = true;
-  this.hashKey = JSON.stringify(options.key || ""); // we could send some valid key like userId or we we may send nothing
+  this.hashKey = JSON.stringify(options.key || ''); // we could send some valid key like userId or we we may send nothing
 
   return this;
 };
@@ -45,7 +44,7 @@ mongoose.Query.prototype.exec = async function () {
 
   // If we have, return that
   if (cacheValue) {
-    console.log("RUNNING THROUGH CACHE", JSON.parse(cacheValue));
+    console.log('RUNNING THROUGH CACHE', JSON.parse(cacheValue));
     const doc = JSON.parse(cacheValue);
 
     return Array.isArray(doc)
@@ -61,7 +60,7 @@ mongoose.Query.prototype.exec = async function () {
   // if we wanna add expiration in 10s , we would have to do
   // client.hset(this.hashKey , key , JSON.stringify(result) , 'EX' . 10);
 
-  console.log("RUNNING THROUGH MONGO", result);
+  console.log('RUNNING THROUGH MONGO', result);
 
   return result;
 };

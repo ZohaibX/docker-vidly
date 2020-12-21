@@ -1,10 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 // middlewares
-const isAuth = require("../middlewares/auth");
-const error = require("../middlewares/error");
+const isAuth = require('../middlewares/auth');
+const error = require('../middlewares/error');
 
 module.exports = function (app) {
   app.use(express.json());
@@ -15,18 +15,18 @@ module.exports = function (app) {
   app.use(error); // it is just a reference of error middleware for error handling
 
   // Cors for axios
-  require("../cors/cors")(app);
+  require('../cors/cors')(app);
 
   // GQL
-  require("../graphql/service/service")(app);
+  require('../graphql/service/service')(app);
 
   // Multer
-  require("../upload-by-multer/service")(app);
+  require('../upload-by-multer/service')(app);
 
   // Redis
-  require("../services/cache");
+  require('../services/cache');
   // we must run a redis server to work with it
 
   // Passport
-  require("../passport/services")(app);
+  // require("../passport/services")(app);
 };
