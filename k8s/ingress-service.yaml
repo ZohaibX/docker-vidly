@@ -5,9 +5,31 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     # nginx.ingress.kubernetes.io/rewrite-target: /$1 # rewriting target
+
+    #! add this line after cert install and its file push
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true' # redirect to https , true must be a string
 spec:
+  #! add this tls line after cert install and its file push
+  tls:
+    - hosts:
+        - goldlacpaints.online
+        - www.goldlacpaints.online
+      secretName: goldlacpaints-online # coming from certificate.yaml file
   rules:
-    - http:
+    - host: goldlacpaints.online # new line - add this line after cert install and its file push
+      http:
+        paths:
+          - path: / # this must be in same format -- simple route
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /graphql
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 4000
+    - host: www.goldlacpaints.online #! new line - add this line after cert install and its file push
+      http:
         paths:
           - path: / # this must be in same format -- simple route
             backend:
